@@ -1,0 +1,37 @@
+﻿body {
+    background-image: url('../../images/bg-body.jpg');
+}
+
+#form1 {
+    width:800px;
+    margin-left:auto;
+    margin-right:auto;
+}
+#banner{
+    top:10px;
+    height:200px;
+    width: 700px;
+    margin-left: 150px;
+}
+ul{
+    list-style-type:none;
+    padding: 0px;
+}
+li{
+    float: left;
+}
+li a{
+    padding:10px;
+    
+}
+
+#nav
+{   
+    font-weight:700;
+    font-style:italic;
+    color:bisque;
+    text-align:justify;
+    text-transform:capitalize;
+    text-emphasis:filled;
+    padding-right:20px;
+}

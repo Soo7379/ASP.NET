@@ -1,0 +1,58 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script lang="C#" runat="server">
+        protected void Page_Load(Object s, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                ViewState.Add("Counter", 0);
+            }
+
+        }
+        protected void Click(Object s, EventArgs e)
+        {
+            int counter = (int)ViewState["Counter"];
+            counter = counter + 1;
+            lblCounter.Text = "visitor: " + counter.ToString();
+            ViewState.Add("Counter", counter);
+
+        }
+</script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id ="banner">
+        <img src="images/logo.png" /><br />
+        <div id="nav">
+            <ul>
+                 <li><asp:LinkButton PostBackUrl="~/Default.aspx" 
+                     ID="Home" runat="server" OnClick="Click">HOME</asp:LinkButton></li>  
+                <li><a href="Recipe.aspx">RECIPE</a></li>
+                <li><a href="Add_Recipe.aspx">ADD A NEW RECIPE</a></li>
+                <li><a href="Search_Recipe.aspx">SEARCH FOR A RECIPE</a></li><br />
+            </ul>
+            
+        </div>    
+        <asp:Label ID="lblCounter" runat="server"></asp:Label>  
+		<div id="content" style="width:480px;">
+            <p></p>
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">   
+            
+            </asp:ContentPlaceHolder>
+        </div>
+       
+    </div>
+    </form>
+    <div style="top:1000px; position:absolute; left:385px;">
+     <hr style="width:520px;"/>
+             <center><footer><h4>Copyright - Soojung Kwak - 300869500- COMP229 - Assignment01</h4></footer></center>
+    </div>
+</body>
+</html>
+
