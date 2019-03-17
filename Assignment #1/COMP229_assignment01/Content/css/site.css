@@ -1,0 +1,97 @@
+﻿body {
+	font-family: 'open sans';
+}
+
+.navbar-default {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.nav-brand {
+	height: 40px;
+}
+
+.jumbotron {
+	margin-top: .5em;
+}
+
+footer {
+	padding: 1em .5em;
+}
+
+.input-required:after {
+	content: '*';
+	color: #f00;
+}
+
+footer {
+	color: white;
+	background-color: #088;
+	margin-top: 20px;
+}
+
+	footer a, footer a:visited {
+		color: #AFA;
+	}
+
+		footer a:hover {
+			color: #ACF;
+		}
+
+select option {
+	padding: 5px;
+}
+
+.gridview {
+	width: 90%;
+	margin: 20px auto;
+	font-family: "Open Sans";
+	font-weight: 500;
+	line-height: 26.4px;
+	border-bottom: 1px solid #aaccff;
+}
+
+	.gridview th, .gridview td {
+		padding: .5em;
+	}
+
+	.gridview th {
+		font-size: 24px;
+		font-weight: 100;
+		font-style: normal;
+	}
+
+	.gridview td {
+		word-wrap: break-word;
+		word-break: break-all;
+	}
+
+#RightNavBarUser {
+	margin: 0;
+}
+
+.RegistrationWizard label {
+	font-weight: 400;
+}
+
+.RegistrationWizard input[type='text'],
+.RegistrationWizard input[type='password'] {
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.RegistrationWizard td {
+	padding: 10px;
+}
+
+.RegistrationWizard .alert-danger {
+	margin-left: 10px;
+	padding: 5px;
+}

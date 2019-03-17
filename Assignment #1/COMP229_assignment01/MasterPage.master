@@ -1,0 +1,183 @@
+﻿<%@ Master Language="C#" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<script runat="server">
+
+	protected void Page_Load(object sender, EventArgs e)
+	{
+		int counter = 0;
+		Application.Lock();
+		if (Application["visits"] != null)
+		{
+			counter = (int)Application["visits"];
+		}
+		counter++;
+		visitCount.Text = counter + "";
+		Application["visits"] = counter;
+		Application.UnLock();
+	}
+
+</script>
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+	<title>Recipe Land</title>
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+	<link href="<%= ResolveUrl("~/Content/css/bootstrap.min.css") %>" rel="stylesheet" />
+	<link href="<%= ResolveUrl("~/Content/css/site.css") %>" rel="stylesheet" />
+	<script type="text/javascript" src="<%= ResolveUrl("~/Content/js/jquery.min.js") %>"></script>
+	<script type="text/javascript" src="<%= ResolveUrl("~/Content/js/bootstrap.min.js") %>"></script>
+	<link href="<%= ResolveUrl("Content/images/chef.svg") %>" rel="shortcut icon" type="image/x-icon" />
+	<script type="text/javascript">
+		$(function () {
+			// Make page in navigation bar active
+			var aTags = $("#navigationBar li a");
+			for (var i = 0; i < aTags.length; i++) {
+				if (aTags[i].href === location.href.split('?')[0]) {
+					$("#navigationBar li")[i].classList.add("active");
+					break;
+				}
+			}
+		});
+	</script>
+	<asp:ContentPlaceHolder ID="headPlaceHolder" runat="server">
+	</asp:ContentPlaceHolder>
+</head>
+
+<body>
+	<form runat="server">
+		<nav class="container-fluid navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<asp:Image runat="server" CssClass="img-responsive nav-brand" ImageUrl="~/Content/images/logo.svg" />
+				</div>
+				<ul id="navigationBar" class="nav navbar-nav">
+					<li>
+						<asp:HyperLink runat="server" NavigateUrl="~/Default.aspx">
+							<span class="glyphicon glyphicon-home"></span> Home
+						</asp:HyperLink>
+					</li>
+					<li>
+						<asp:HyperLink runat="server" NavigateUrl="~/Recipes.aspx">
+						<span class="glyphicon glyphicon-list" style="color: #666;"></span>
+						Recipes
+						</asp:HyperLink>
+					</li>
+					<li>
+						<asp:HyperLink runat="server" NavigateUrl="~/Add.aspx">
+						<span class="glyphicon glyphicon-plus-sign" style="color: #1A1;"></span>
+						Add
+						</asp:HyperLink>
+					</li>
+					<li>
+						<asp:HyperLink runat="server" NavigateUrl="~/Search.aspx">
+						<span class="glyphicon glyphicon-search" style="color: #444;"></span>
+						Search
+						</asp:HyperLink>
+					</li>
+				</ul>
+
+				<div class="navbar-nav navbar-form navbar-right">
+					<asp:LoginView ID="LoginView" runat="server">
+						<LoggedInTemplate>
+							<div runat="server" id="RightNavBarUser" clientidmode="Static" class="navbar-nav navbar-form navbar-right">
+								<div class="btn-group">
+									<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<asp:LoginName ID="LoginName" runat="server" />
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li>
+											<asp:HyperLink runat="server" NavigateUrl="~/ViewRecipes.aspx" Text="View My Recipes" /></li>
+										<li>
+										<li>
+											<asp:HyperLink runat="server" NavigateUrl="~/Add.aspx" Text="Add new recipe" /></li>
+										<li>
+											<asp:HyperLink runat="server" NavigateUrl="~/Search.aspx" Text="Find a recipe" /></li>
+										<li role="separator" class="divider"></li>
+										<li>
+											<asp:HyperLink runat="server" NavigateUrl="~/SignOut.aspx" Text="Logout" /></li>
+									</ul>
+								</div>
+							</div>
+						</LoggedInTemplate>
+						<AnonymousTemplate>
+							<div class="form-group">
+								<asp:HyperLink runat="server" NavigateUrl="SignUp.aspx" Text="Register" CssClass="btn btn-success" />
+							</div>
+							<div class="form-group">
+								<asp:HyperLink runat="server" NavigateUrl="Login.aspx" Text="Login" CssClass="btn btn-primary" />
+							</div>
+						</AnonymousTemplate>
+
+						<RoleGroups>
+							<asp:RoleGroup Roles="Administrators">
+								<ContentTemplate>
+									<div runat="server" id="RightNavBarUser" clientidmode="Static" class="navbar-nav navbar-form navbar-right">
+										<div class="btn-group">
+											<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<asp:LoginName ID="LoginName" runat="server" />
+												<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu">
+												<li>
+													<asp:HyperLink runat="server" NavigateUrl="~/ViewRecipes.aspx" Text="View My Recipes" /></li>
+												<li>
+												<li>
+													<asp:HyperLink runat="server" NavigateUrl="~/Add.aspx" Text="Add new recipe" /></li>
+												<li>
+													<asp:HyperLink runat="server" NavigateUrl="~/Search.aspx" Text="Find a recipe" /></li>
+												<li role="separator" class="divider"></li>
+												<li>
+													<asp:HyperLink runat="server" NavigateUrl="~/Admins/Categories.aspx" Text="Manage Categories" /></li>
+												<li>
+													<asp:HyperLink runat="server" NavigateUrl="~/Admins/Cuisines.aspx" Text="Manage Cuisines" /></li>
+												<li>
+													<asp:HyperLink runat="server" NavigateUrl="~/Admins/Users.aspx" Text="Manage Users" /></li>
+												<li role="separator" class="divider"></li>
+												<li>
+													<asp:HyperLink runat="server" NavigateUrl="~/SignOut.aspx" Text="Logout" /></li>
+											</ul>
+										</div>
+									</div>
+								</ContentTemplate>
+							</asp:RoleGroup>
+						</RoleGroups>
+
+					</asp:LoginView>
+				</div>
+
+			</div>
+		</nav>
+
+		<noscript>
+			<div class="container">
+				<p class="alert-danger h4">
+					For the best user experience, this website needs JavaScript enabled in the browser.
+				</p>
+			</div>
+		</noscript>
+
+		<asp:ContentPlaceHolder ID="contentPlaceHolder" runat="server">
+		</asp:ContentPlaceHolder>
+
+		<footer class="container-fluid">
+			<div class="container">
+				<p class="col-md-8 h4">
+					<span class="glyphicon glyphicon-copyright-mark"></span>
+					Copyright 2016. Poulad Ashraf Pour. This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" title="Learn more about Creative Commons license" target="_blank">CC&nbsp;4.0&nbsp;BY</a> license.
+				</p>
+				<p class="col-md-8 h4" style="color: azure;">
+					<span class="glyphicon glyphicon-user"></span>
+					<asp:Label runat="server" ID="visitCount" ForeColor="#f2f2f2" />
+					visits
+				</p>
+			</div>
+		</footer>
+	</form>
+
+</body>
+</html>
